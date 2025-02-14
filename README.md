@@ -5,4 +5,4 @@ The code was entirely written by myself and may be difficult to read and reprodu
 Installation of the library mkl_lapack95 and parallel computing with openmp
 
 ## run.ps1
-After compiling with VS, run _run.ps1_ to automatically run the program
+After compiling with VS, run _run.ps1_ to automatically run the program(mainly used to automatically continue running the program after an interruption.)
