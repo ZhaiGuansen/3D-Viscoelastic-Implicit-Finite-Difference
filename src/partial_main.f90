@@ -87,6 +87,7 @@
  !Initialize values around shot point, output1.dat and output2.dat files serve as initialization
       CALL MAKE_INI_CUBE(NX,NY,NZ,L,INI_T,X0(1),X0(2),X0(3),FP,TSTEP,RHO(X0(1),X0(2),X0(3)),VP(X0(1),X0(2),X0(3)),NP(X0(1),X0(2),X0(3)),AMPL,LABEL)
       WRITE(*,*)'INI_CUBE FINISHED'
+      WRITE(*,*)'constructing coefficient matrix'
       call flush()
 
       IF(IS_INI/=2)THEN 

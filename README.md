@@ -26,14 +26,14 @@ brew install lapack
 ```
 ## Compilation & Execution
 
-### Clone the repository
+### 1.Clone the repository
 
-### Compile the code
+### 2.Compile the code
 ```bash
 make clean      # Clean previous builds
 make FC=gfortran  # Compile with gfortran
 ```
-### Run the program
+### 3.Run the program
 ```bash
 make run
 ```
@@ -46,6 +46,87 @@ make run
 ### Model Data Settings
 
 ./src/partial_main.f90 line43-63
+
+### Working Example
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Value</th>
+    <th>Units</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Grid dimensions</td>
+    <td>43×43×43</td>
+    <td>-</td>
+    <td>Excluding 15-layer PML</td>
+  </tr>
+  <tr>
+    <td>Source position</td>
+    <td>(22,22,22)</td>
+    <td>grid</td>
+    <td>Center of computational domain</td>
+  </tr>
+    <tr>
+    <td>Spatial step</td>
+    <td>1.0</td>
+    <td>m</td>
+    <td>Uniform discretization</td>
+  </tr>
+    <tr>
+    <td>Time step</td>
+    <td>2×10⁻⁴</td>
+    <td>s</td>
+    <td></td>
+  </tr>
+    <tr>
+    <td>P-wave velocity</td>
+    <td>3500</td>
+    <td>m/s</td>
+    <td>Surrounding rock</td>
+  </tr>
+    <tr>
+    <td>S-wave velocity</td>
+    <td>2100</td>
+    <td>m/s</td>
+    <td>Surrounding rock</td>
+  </tr>
+    <tr>
+    <td>Q<sub>p</sub></td>
+    <td>200</td>
+    <td>-</td>
+    <td>Quality factor (P-wave)</td>
+  </tr>
+    <tr>
+    <td>Q<sub>s</sub></td>
+    <td>100</td>
+    <td>-</td>
+    <td>Quality factor (S-wave)</td>
+  </tr>
+</table>
+
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+  font-family: monospace;
+}
+th {
+  background-color: #f0f0f0;
+  text-align: left;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+</style>
 
 ## Initial version:Compile and run this Fortran program using Visual Studio 2022
 Installation of the library mkl_lapack95 and parallel computing with openmp
