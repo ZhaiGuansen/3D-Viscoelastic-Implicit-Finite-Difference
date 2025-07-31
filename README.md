@@ -1,8 +1,9 @@
-#     3D Viscoelastic Implicit Finite-Difference
+# 3D Viscoelastic Implicit Finite-Difference
+
 This repository contains a Fortran-based geophysical modeling software originally developed for Windows/Visual Studio, now ported to Linux/macOS with Makefile support. The software performs forward modeling and outputs results that can be processed with MATLAB and Python into SEGY format.
 
-
 ## Table of Contents
+
 - [Installation](#installation)
 - [Compilation & Execution](#compilation--execution)
 - [Code Description](#code-description)
@@ -12,31 +13,38 @@ This repository contains a Fortran-based geophysical modeling software originall
 ## Installation
 
 ### Linux (Ubuntu/Debian)
+
 ```bash
 sudo apt update
 sudo apt install build-essential gfortran make
 sudo apt install liblapack-dev libblas-dev
 ```
 
-### macOS 
+### macOS
+
 ```bash
 brew update
 brew install gcc make  # gcc includes gfortran
 brew install lapack
 ```
+
 ## Compilation & Execution
 
 ### 1.Clone the repository
 
 ### 2.Compile the code
+
 ```bash
 make clean      # Clean previous builds
 make FC=gfortran  # Compile with gfortran
 ```
+
 ### 3.Run the program
+
 ```bash
 make run
 ```
+
 ## Code Description
 
 ### Parameter Settings
@@ -66,19 +74,19 @@ make run
     <td>Source position</td>
     <td>(22,22,22)</td>
     <td>grid</td>
-    <td>Center of computational domain</td>
+    <td>-</td>
   </tr>
     <tr>
     <td>Spatial step</td>
     <td>1.0</td>
     <td>m</td>
-    <td>Uniform discretization</td>
+    <td>-</td>
   </tr>
     <tr>
     <td>Time step</td>
     <td>2×10⁻⁴</td>
     <td>s</td>
-    <td></td>
+    <td>-</td>
   </tr>
     <tr>
     <td>P-wave velocity</td>
@@ -106,34 +114,15 @@ make run
   </tr>
 </table>
 
-<style>
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 20px 0;
-  font-family: monospace;
-}
-th {
-  background-color: #f0f0f0;
-  text-align: left;
-  padding: 8px;
-  border: 1px solid #ddd;
-}
-td {
-  padding: 8px;
-  border: 1px solid #ddd;
-}
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-</style>
-
 ## Initial version:Compile and run this Fortran program using Visual Studio 2022
+
 Installation of the library mkl_lapack95 and parallel computing with openmp
 
 ## run.ps1
+
 After compiling with VS, run _run.ps1_ to automatically run the program(mainly used to automatically continue running the program after an interruption.)
 
 ## Modified on July 8, 2025.
+
 Uploaded the latest code modifications and improved the Fortran code comments.
 
