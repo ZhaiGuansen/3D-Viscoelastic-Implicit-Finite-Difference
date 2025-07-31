@@ -114,6 +114,8 @@ make run
   </tr>
 </table>
 
+Example outputs including .dat files, .segy files, and timeshot are provided in the ./Example_output directory.
+
 ## Initial version:Compile and run this Fortran program using Visual Studio 2022
 
 Installation of the library mkl_lapack95 and parallel computing with openmp
