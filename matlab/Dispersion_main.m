@@ -1,15 +1,15 @@
      path=pwd;
      name1='all3';
-     name2='\output';
+     name2='/output';
      num='5';
      d='x';
      name3='.dat';
 
-     file=strcat(path,'\',name1,name2,num,'_',d,name3);
+     file=strcat(path,'/',name1,name2,num,'_',d,name3);
 
      data=readdat(file,800);
 
-     dt = 0.1;%单位ms
+     dt = 0.1;%ms
      dx = 1;
      
      data=data./max(max(data));
@@ -19,9 +19,8 @@
      t=1*dt:dt:nt*dt;
      wigb(data,1,x,t);
      
-     
-     minOff=dx*40;%炮点
-     h = minOff:dx:(nx-1)*dx+minOff;%偏移距
+     minOff=dx*40;
+     h = minOff:dx:(nx-1)*dx+minOff;
      h=abs(h);
      flow =10;fhigh =350;
      vlow=500;vhigh=4000;dv=10;
@@ -49,10 +48,6 @@
   colorbar;
   %clim([0,4000])
   xlabel('Frequency/Hz'); ylabel('Velocity/m/s')
-
-
-
-% %谱增强
 
   D=Spec_Enhence(abs(spec),10,20,150,1);
   figure;

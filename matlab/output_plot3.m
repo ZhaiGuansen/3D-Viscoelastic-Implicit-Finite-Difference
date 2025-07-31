@@ -1,6 +1,5 @@
 function  output_plot3(T,num1,n1,num2,n2,size,value_x,value_y,value_z,cp0,namenum)
-%OUTPUT_PLOT2 此处显示有关此函数的摘要
-%   固定位置+固定值
+%Fix two parameters among x, y, z, and t to obtain a two-dimensional seismic record.
 name=['x','y','z','t'];
 if num1>num2
     t=num1;
@@ -82,7 +81,7 @@ if num2~=4
 end
     
 
-    cp1="\output"+namenum;
+    cp1="/output"+namenum;
 
 
 if num2~=4

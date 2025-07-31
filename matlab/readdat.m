@@ -1,5 +1,4 @@
 function D = readdat(file,t1)
-%READDAT 此处显示有关此函数的摘要
 f=fopen(file,'r');
 C=textscan(f, '%f', 'Delimiter', ' ', 'MultipleDelimsAsOne', true);
 data=C{1};

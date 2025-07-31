@@ -51,7 +51,7 @@
 
       call omp_set_num_threads(18)
       T0=3
-      NT=400
+      NT=200
       IS_INI=0
       
       !Pad to integer block region
