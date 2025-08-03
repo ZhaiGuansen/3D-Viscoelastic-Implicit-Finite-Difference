@@ -1,11 +1,11 @@
 # --- Cross-platform Makefile for Fortran Project ---
 
-# 编译器与编译选项
+# Compiler and compilation flags
 FC ?= gfortran
 FFLAGS = -O2 -Wall -fopenmp -m64 -ffree-line-length-none
 LDFLAGS = -llapack -lblas
 
-# 源文件与目标文件
+# Source files vs target binaries
 SRC = src/DIA_SM.f90 \
       src/INI.f90 \
       src/matrix_construction.f90 \
@@ -19,11 +19,11 @@ SRC = src/DIA_SM.f90 \
 OBJ = $(SRC:.f90=.o)
 EXE = main
 
-# 系统平台识别
+# System platform identification
 UNAME_S := $(shell uname -s)
 
 ifeq ($(OS),Windows_NT)
-    # Windows 原生（非 WSL）
+    # Windows
     EXE := $(EXE).exe
     ENABLE_LARGE_ADDRESS := yes
     IS_WINDOWS := true
@@ -40,7 +40,7 @@ else ifeq ($(UNAME_S),Darwin)
     IS_MAC := true
 endif
 
-# stdbuf 适配
+# stdbuf
 ifeq ($(IS_LINUX),true)
     STDBUF := stdbuf -o0 -e0
 else ifeq ($(IS_WSL),true)
