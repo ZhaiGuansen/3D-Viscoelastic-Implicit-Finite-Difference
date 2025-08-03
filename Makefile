@@ -1,10 +1,11 @@
-# --- Makefile for Fortran Project ---
+# --- Cross-platform Makefile for Fortran Project ---
 
+# 编译器与编译选项
 FC ?= gfortran
 FFLAGS = -O2 -Wall -fopenmp -m64 -ffree-line-length-none
-# FFLAGS = -O2 -ffree-line-length-none
 LDFLAGS = -llapack -lblas
 
+# 源文件与目标文件
 SRC = src/DIA_SM.f90 \
       src/INI.f90 \
       src/matrix_construction.f90 \
@@ -16,15 +17,39 @@ SRC = src/DIA_SM.f90 \
       src/main.f90
 
 OBJ = $(SRC:.f90=.o)
-
 EXE = main
 
+# 系统平台识别
+UNAME_S := $(shell uname -s)
+
 ifeq ($(OS),Windows_NT)
+    # Windows 原生（非 WSL）
     EXE := $(EXE).exe
     ENABLE_LARGE_ADDRESS := yes
+    IS_WINDOWS := true
+else ifeq ($(UNAME_S),Linux)
+    # Linux or WSL
+    ifneq (,$(findstring Microsoft,$(shell uname -r)))
+        # WSL
+        IS_WSL := true
+    else
+        IS_LINUX := true
+    endif
+else ifeq ($(UNAME_S),Darwin)
+    # macOS
+    IS_MAC := true
 endif
 
-.PHONY: all clean run set-large
+# stdbuf 适配
+ifeq ($(IS_LINUX),true)
+    STDBUF := stdbuf -o0 -e0
+else ifeq ($(IS_WSL),true)
+    STDBUF := stdbuf -o0 -e0
+else
+    STDBUF :=
+endif
+
+.PHONY: all clean run set-env
 
 all: $(EXE)
 
@@ -43,12 +68,10 @@ clean:
 
 run: $(EXE)
 	@echo "Running..."
-	@stdbuf -o0 -e0 ./$(EXE)
-# 	@GFORTRAN_STACKSIZE=4G OMP_STACKSIZE=4G  ulimit -v unlimited && ./$(EXE)
-
+	$(STDBUF) ./$(EXE)
 
 set-env:
-ifeq ($(OS),Windows_NT)
+ifeq ($(IS_WINDOWS),true)
 	@set OMP_WAIT_POLICY=active
 	@set GFORTRAN_STACKSIZE=4G
 	@set OMP_STACKSIZE=4G
